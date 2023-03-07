@@ -23,9 +23,9 @@ def getMeals(day):
     htmlDinnerText = f'<div class="row" >' + "".join([f'<div class="col col-2">{"".join(meal)} </div>' for meal in meals[4:]]) + "</div>"
     htmlDinner = f'<div class="row" >' + "".join([f'<div class="col col-2">{image} </div>' for image in images[4:]]) + "</div>"
 
-    return constants.HTML_START + htmlDayText + htmlLunchText + htmlLunch + "<br><br>" + htmlDinnerText + htmlDinner + constants.HTML_END
+    return  htmlDayText + htmlLunchText + htmlLunch + "<br><br>" + htmlDinnerText + htmlDinner
 
 with open("out.html", "w", encoding="UTF-8") as fptr:
     today = datetime.datetime.now()
-    htmlCombined = getMeals(today) + "<br><br>"  + getMeals(today + datetime.timedelta(days=1))
+    htmlCombined = constants.HTML_START +  getMeals(today) + "<br><br>"  + getMeals(today + datetime.timedelta(days=1)) + constants.HTML_END
     fptr.write(htmlCombined)
