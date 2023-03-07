@@ -36,7 +36,7 @@ def getMeals(day):
     return  innerStart +  htmlDayText + htmlLunch + "<br><br>"  + htmlDinner + innerEnd
 
 with open("out.html", "w", encoding="UTF-8") as fptr:
-    today = datetime.datetime.now()
+    today = datetime.datetime.now() + datetime.timedelta(hours=constants.GMT_DELTA)
     dateStr =  today.strftime("%H:%M:%S %d.%m.%Y")
     timestampHtml = f'<br><br><br> <div class="row justify-content-md-center" > <div class=\"col-md-auto\"> <h4 style=\"font-family: Arial, Helvetica, sans-serif;\"> scraped @ {dateStr} </h4> </div> </div>'
     htmlCombined = constants.HTML_START +  getMeals(today) + "<br><br>"  + getMeals(today + datetime.timedelta(days=1)) + timestampHtml + constants.HTML_END

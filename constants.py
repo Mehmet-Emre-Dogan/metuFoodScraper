@@ -24,3 +24,6 @@ HTML_END="""      <br>
 </body>
 </html>
 """
+
+
+GMT_DELTA = 3
