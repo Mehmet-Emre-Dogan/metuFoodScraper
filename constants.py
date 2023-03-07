@@ -19,10 +19,8 @@ HTML_START= f"""
 
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
-      <div class="container" id="0">
 """
-HTML_END="""      <br>
-    </div> 
+HTML_END="""      <br> 
 </body>
 </html>
 """

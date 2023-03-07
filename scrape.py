@@ -17,13 +17,23 @@ def getMeals(day):
     # print(meals)
     for txt in meals:
         print(txt)
-    htmlDayText = f'<div class="row" > <h2 style=\"font-family: Arial, Helvetica, sans-serif;\"> {day.strftime("%d/%m/%Y")} </h2> </div>'
-    htmlLunchText = f'<div class="row" >' + "".join([f'<div class="col col-2">{"".join(meal)} </div>' for meal in meals[0:4]]) + "</div>"
-    htmlLunch = f'<div class="row" >' + "".join([f'<div class="col col-2">{image} </div>' for image in images[0:4]]) + "</div>"
-    htmlDinnerText = f'<div class="row" >' + "".join([f'<div class="col col-2">{"".join(meal)} </div>' for meal in meals[4:]]) + "</div>"
-    htmlDinner = f'<div class="row" >' + "".join([f'<div class="col col-2">{image} </div>' for image in images[4:]]) + "</div>"
 
-    return  htmlDayText + htmlLunchText + htmlLunch + "<br><br>" + htmlDinnerText + htmlDinner
+    # innerStart = '<div class="container">'
+    # htmlDayText = f'<div class="row justify-content-md-center" > <div class=\"col col-2\"> <h2 style=\"font-family: Arial, Helvetica, sans-serif;\"> {day.strftime("%d/%m/%Y")} </h2> </div> </div>'
+    # htmlLunchText = f'<div class="row justify-content-md-center" >' + "".join([f'<div class="col col-md-auto">{"".join(meal)} </div>' for meal in meals[0:4]]) + "</div>"
+    # htmlLunch = f'<div class="row justify-content-md-center" >' + "".join([f'<div class="col col-md-auto">{image} </div>' for image in images[0:4]]) + "</div>"
+    # htmlDinnerText = f'<div class="row justify-content-md-center" >' + "".join([f'<div class="col col-md-auto">{"".join(meal)} </div>' for meal in meals[4:]]) + "</div>"
+    # htmlDinner = f'<div class="row justify-content-md-center" >' + "".join([f'<div class="col col-md-auto">{image} </div>' for image in images[4:]]) + "</div>"
+    # innerEnd = '</div>'
+    # return  innerStart +  htmlDayText + htmlLunchText + htmlLunch + "<br><br>" + htmlDinnerText + htmlDinner + innerEnd
+
+    innerStart = '<div class="container">'
+    htmlDayText = f'<div class="row justify-content-md-center" > <div class=\"col col-2\"> <h2 style=\"font-family: Arial, Helvetica, sans-serif;\"> {day.strftime("%d/%m/%Y")} </h2> </div> </div>'
+    htmlLunch = f'<div class="row justify-content-md-center" >' + "".join([f'<div class="col col-md-auto">{"".join(meal)}<br>{image} </div>' for (meal, image) in zip(meals[0:4], images[0:4])]) + "</div>"
+    htmlDinner = f'<div class="row justify-content-md-center" >' + "".join([f'<div class="col col-md-auto">{"".join(meal)}<br>{image} </div>' for (meal, image) in zip(meals[4:], images[4:])]) + "</div>"
+    innerEnd = '</div>'
+    
+    return  innerStart +  htmlDayText + htmlLunch + "<br><br>"  + htmlDinner + innerEnd
 
 with open("out.html", "w", encoding="UTF-8") as fptr:
     today = datetime.datetime.now()
